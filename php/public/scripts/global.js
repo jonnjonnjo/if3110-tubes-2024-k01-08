@@ -102,10 +102,13 @@ class NavbarManager {
   }
 
   async handleSignOut() {
+    // take the token first
+    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     // Initialize ajax
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "/auth/sign-out", true);
-
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+   
     xhr.onreadystatechange = () => {
       if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {
@@ -121,8 +124,7 @@ class NavbarManager {
     // Disable logout buttonl
     this.signOutButton.disabled = true;
 
-    // Send
-    xhr.send();
+    xhr.send(`csrf_token=${encodeURIComponent(token)}`);
   }
 
   onOpenSidebar() {

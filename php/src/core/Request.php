@@ -201,7 +201,10 @@ class Request
     if (strpos($contentType, 'application/json') === false && $this->method !== 'GET') {
       $csrf_token = $this->body['csrf_token'] ?? null;
       if (!\src\utils\CsrfProtection::validateToken($csrf_token)) {
-        throw new \src\exceptions\BadRequestHttpException('CSRF token validation failed. Please refresh the page and try again.');
+        throw new \src\exceptions\BadRequestHttpException(
+          "CSRF validation failed. Provided token: "
+            . var_export($csrf_token, true)
+        );
       }
     }
 
