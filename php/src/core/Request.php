@@ -198,13 +198,12 @@ class Request
 
     // validate the csrf for the state-changing request 
 
-    if ($this->method !== 'GET') {
+    if (strpos($contentType, 'application/json') === false && $this->method !== 'GET') {
       $csrf_token = $this->body['csrf_token'] ?? null;
       if (!\src\utils\CsrfProtection::validateToken($csrf_token)) {
-        throw new \src\exceptions\BadRequestHttpException('You cannot do this operation because there is no csrf_token');
+        throw new \src\exceptions\BadRequestHttpException('CSRF token validation failed. Please refresh the page and try again.');
       }
     }
-
 
     // // Sanitize the body data
     // $this->sanitizeBody();
