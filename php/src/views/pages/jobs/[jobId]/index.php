@@ -176,7 +176,7 @@ use src\utils\UserSession;
                     <div class="application-status__group">
                         <h3 class="application-status__title">Status Reason</h3>
                         <div class="content__rich-text">
-                            <?= $application->getStatusReason() ?>
+                            <?= htmlspecialchars($application->getStatusReason()) ?>
                         </div>
                     </div>
                 <?php endif; ?>
@@ -190,7 +190,7 @@ use src\utils\UserSession;
 
             <!-- Content -->
             <div class="content__rich-text">
-                <?= $job->getDescription() ?>
+                <?= htmlspecialchars($job->getDescription()) ?>
             </div>
 
             <!-- Attachments (Carousel) -->
