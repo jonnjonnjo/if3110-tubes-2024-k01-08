@@ -198,7 +198,7 @@ class Request
 
     // validate the csrf for the state-changing request 
 
-    if (!strpos($contentType, 'application/json') !== false && $this->method !== 'GET') {
+    if ($this->method !== 'GET') {
       $csrf_token = $this->body['csrf_token'] ?? null;
       if (!\src\utils\CsrfProtection::validateToken($csrf_token)) {
         throw new \src\exceptions\BadRequestHttpException('You cannot do this operation because there is no csrf_token');
